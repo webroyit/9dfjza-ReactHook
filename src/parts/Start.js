@@ -7,11 +7,18 @@ const start = props => {
     // first element is the current value
     // second element is the function to change the value
     const [textInfor, setTextInfor] = useState('');
+    const [listOfText, setListOfText] = useState([]);
 
     const changeInput = (e) => {
         // this will update the value of textInfor
         setTextInfor(e.target.value);
     };
+
+    const addTextToList = () => {
+        // concat reuturn a new array
+        setListOfText(listOfText.concat(textInfor));
+        setTextInfor("");
+    }
 
     // <React.Fragment> is top level sibling elements
     return <React.Fragment>
@@ -20,7 +27,13 @@ const start = props => {
             placeholder="Something..."
             onChange={ changeInput }
             value={ textInfor } />
-        <button type="button">Enter</button>
+        <button type="button" onClick={ addTextToList }>Enter</button>
+
+        <ul>
+            { listOfText.map(item => (
+                <li key={ item }>{ item } </li>
+            )) }
+        </ul>
     </React.Fragment>
 };
 
