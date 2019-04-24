@@ -4,20 +4,22 @@ import React, { useState } from 'react';
 const start = props => {
     // this is a function that replace state
     // this has two elements
-    const inputValue = useState('');
+    // first element is the current value
+    // second element is the function to change the value
+    const [textInfor, setTextInfor] = useState('');
 
     const changeInput = (e) => {
-        // this will update the value of inputValue
-        inputValue[1](e.target.value);
+        // this will update the value of textInfor
+        setTextInfor(e.target.value);
     };
 
-    // top level sibling elements
+    // <React.Fragment> is top level sibling elements
     return <React.Fragment>
         <input
             type="text"
             placeholder="Something..."
             onChange={ changeInput }
-            value={ inputValue[0] } />
+            value={ textInfor } />
         <button type="button">Enter</button>
     </React.Fragment>
 };
