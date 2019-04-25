@@ -1,5 +1,5 @@
 // useState enable hooks
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const start = props => {
@@ -9,6 +9,26 @@ const start = props => {
     // second element is the function to change the value
     const [textInfor, setTextInfor] = useState('');
     const [listOfText, setListOfText] = useState([]);
+
+    // this is a function
+    useEffect(() => {
+        // get the data from firebase
+        axios.get('https://reacthook-dbe0f.firebaseio.com/text.json')
+            .then(res => {
+                console.log(res);
+                const textData = res.data;
+                const texts = [];
+                // store each res.data to the texts's array
+                for(let key in textData){
+                    texts.push({ id: key, text: textData[key].text})
+                }
+                // overwrite the listOfText with texts's array
+                setListOfText(texts);
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    });
 
     const changeInput = (e) => {
         // this will update the value of textInfor
@@ -43,7 +63,7 @@ const start = props => {
 
         <ul>
             { listOfText.map(item => (
-                <li key={ item }>{ item } </li>
+                <li key={ item.id }>{ item.text } </li>
             )) }
         </ul>
     </React.Fragment>
