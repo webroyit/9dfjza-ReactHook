@@ -1,5 +1,6 @@
 // useState enable hooks
 import React, { useState } from 'react';
+import axios from 'axios';
 
 const start = props => {
     // this is a function that replace state
@@ -18,6 +19,16 @@ const start = props => {
         // concat reuturn a new array
         setListOfText(listOfText.concat(textInfor));
         setTextInfor("");
+
+        // using firebase
+        // passing textInfor as body
+        axios.post('https://reacthook-dbe0f.firebaseio.com/text.json', {text: textInfor})
+            .then(res => {
+                console.log(res);
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }
 
     // <React.Fragment> is top level sibling elements
