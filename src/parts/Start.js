@@ -10,6 +10,7 @@ const start = props => {
     const [textInfor, setTextInfor] = useState('');
     const [listOfText, setListOfText] = useState([]);
 
+    // this is render cycle
     // this is a function
     useEffect(() => {
         // get the data from firebase
@@ -28,7 +29,9 @@ const start = props => {
             .catch(err => {
                 console.log(err)
             })
-    });
+    // second argument is the condition before executing this function
+    // value in the array is the listener that it check when it is change, it will execute this function
+    }, []);
 
     const changeInput = (e) => {
         // this will update the value of textInfor
