@@ -25,10 +25,12 @@ const start = props => {
                 }
                 // overwrite the listOfText with texts's array
                 setListOfText(texts);
-            })
-            .catch(err => {
-                console.log(err)
-            })
+            });
+            // cleanup
+            return () => {
+                console.log('This is same as componentWillUnmount');
+            };
+
     // second argument is the condition before executing this function
     // value in the array is the listener that it check when it is change, it will execute this function
     }, []);
