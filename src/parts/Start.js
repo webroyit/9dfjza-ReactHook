@@ -41,15 +41,15 @@ const start = props => {
     };
 
     const addTextToList = () => {
-        // concat reuturn a new array
-        setListOfText(listOfText.concat(textInfor));
-        setTextInfor("");
-
         // using firebase
         // passing textInfor as body
         axios.post('https://reacthook-dbe0f.firebaseio.com/text.json', {text: textInfor})
             .then(res => {
-                console.log(res);
+                const listData = { id: res.data.name, text: textInfor}
+
+                // concat return a new array
+                setListOfText(listOfText.concat(listData));
+                setTextInfor("");
             })
             .catch(err => {
                 console.log(err)
