@@ -11,6 +11,9 @@ const reducer = props => {
             case 'SET':
                 // return the whole thing
                 return action.payload;
+            case 'REMOVE':
+                // payload is the item id to remove
+                return state.filter(item => item.id !== action.payload)
             default:
                 return state;   
         }
@@ -55,6 +58,10 @@ const reducer = props => {
             })
     }
 
+    const removeTextFromList = itemId => {
+        dispatch({ type: 'REMOVE', payload: itemId });
+    }
+
     return <React.Fragment>
         <p>Using useReducer</p>
         <input
@@ -66,7 +73,7 @@ const reducer = props => {
 
         <ul>
             { listOfText.map(item => (
-                <li key={ item.id }>{ item.text } </li>
+                <li key={ item.id } onClick={removeTextFromList.bind(this, item.id)}>{ item.text } </li>
             )) }
         </ul>
     </React.Fragment>
