@@ -28,9 +28,12 @@ const app = props => {
         <h1>Example of using React Hook</h1>
         <Header 
           loadStart={changePage.bind(this, 'start')}
-          loadSingle={changePage.bind(this, 'single')} />
-        <Reducer />
-        {page === 'start' ? <Start /> : <SingleState />}
+          loadSingle={changePage.bind(this, 'single')}
+          loadReducer={changePage.bind(this, 'reducer')} />
+        
+        {page === 'start' ? <Start /> : null}
+        {page === 'single' ? <SingleState /> : null}
+        {page === 'reducer' ? <Reducer /> : null}
       </NameContext.Provider>
     </div>
   );

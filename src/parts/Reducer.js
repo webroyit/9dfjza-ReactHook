@@ -4,6 +4,7 @@ import axios from 'axios';
 const reducer = props => {
     const [textInfor, setTextInfor] = useState('');
 
+    // this give the lastest state
     const textReducer = (state, action) => {
         switch(action.type){
             case 'ADD':
