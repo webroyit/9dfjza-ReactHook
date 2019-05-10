@@ -5,6 +5,7 @@ const header = props => {
         <button onClick={props.loadStart}>Start</button>
         <button onClick={props.loadSingle}>Single</button>
         <button onClick={props.loadReducer}>Reducer</button>
+        <button onClick={props.loadReference}>Reference</button>
     </header>
 };
 

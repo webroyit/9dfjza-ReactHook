@@ -4,6 +4,7 @@ import Header from './parts/Header';
 import Start from './parts/Start';
 import SingleState from './parts/SingleState';
 import Reducer from './parts/Reducer';
+import Reference from './parts/Reference';
 import Name from './parts/Name';
 import NameContext from './nameContext';
 
@@ -29,11 +30,13 @@ const app = props => {
         <Header 
           loadStart={changePage.bind(this, 'start')}
           loadSingle={changePage.bind(this, 'single')}
-          loadReducer={changePage.bind(this, 'reducer')} />
+          loadReducer={changePage.bind(this, 'reducer')}
+          loadReference={changePage.bind(this, 'reference')} />
         
         {page === 'start' ? <Start /> : null}
         {page === 'single' ? <SingleState /> : null}
         {page === 'reducer' ? <Reducer /> : null}
+        {page === 'reference' ? <Reference /> : null}
       </NameContext.Provider>
     </div>
   );
