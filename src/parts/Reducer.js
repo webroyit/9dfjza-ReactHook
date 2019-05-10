@@ -59,7 +59,13 @@ const reducer = props => {
     }
 
     const removeTextFromList = itemId => {
-        dispatch({ type: 'REMOVE', payload: itemId });
+        axios.delete(`https://reacthook-dbe0f.firebaseio.com/text/${itemId}.json`)
+            .then(res => {
+                dispatch({ type: 'REMOVE', payload: itemId });
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }
 
     return <React.Fragment>
