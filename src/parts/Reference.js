@@ -1,6 +1,8 @@
 import React, { useEffect, useReducer, useRef } from 'react';
 import axios from 'axios';
 
+import List from './small/List';
+
 const reference = props => {
     const textInputRef = useRef();
 
@@ -78,11 +80,7 @@ const reference = props => {
             ref={textInputRef} />
         <button type="button" onClick={ addTextToList }>Enter</button>
 
-        <ul>
-            { listOfText.map(item => (
-                <li key={ item.id } onClick={removeTextFromList.bind(this, item.id)}>{ item.text } </li>
-            )) }
-        </ul>
+        <List items={listOfText} onClick={removeTextFromList} />
     </React.Fragment>
 };
 
