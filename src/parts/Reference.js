@@ -1,9 +1,10 @@
-import React, { useEffect, useReducer, useRef } from 'react';
+import React, { useState, useEffect, useReducer, useRef } from 'react';
 import axios from 'axios';
 
 import List from './small/List';
 
 const reference = props => {
+    const [isValid, setIsValid] = useState(false);
     const textInputRef = useRef();
 
     // this give the lastest state
@@ -70,6 +71,15 @@ const reference = props => {
             })
     }
 
+    const checkInput = e => {
+        if(e.target.value.trim() === ''){
+            setIsValid(false);
+        }
+        else{
+            setIsValid(true);
+        }
+    }
+
     return <React.Fragment>
         <p>Using useRef</p>
         <p>It allow you to pass props in functional components</p>
@@ -77,7 +87,9 @@ const reference = props => {
         <input
             type="text"
             placeholder="Something..."
-            ref={textInputRef} />
+            ref={textInputRef}
+            onChange={checkInput}
+            style={{ borderColor: isValid ? 'blue' : 'red' }} />
         <button type="button" onClick={ addTextToList }>Enter</button>
 
         <List items={listOfText} onClick={removeTextFromList} />
