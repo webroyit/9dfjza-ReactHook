@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useReducer, useRef } from 'react';
+// useMemo can prevent the dom from rerendering if the value is not change
+import React, { useState, useEffect, useReducer, useRef, useMemo } from 'react';
 import axios from 'axios';
 
 import List from './small/List';
@@ -92,7 +93,11 @@ const reference = props => {
             style={{ borderColor: isValid ? 'blue' : 'red' }} />
         <button type="button" onClick={ addTextToList }>Enter</button>
 
-        <List items={listOfText} onClick={removeTextFromList} />
+        { 
+            // update the DOM only if the listOfText change
+            useMemo(() => (<List items={listOfText} onClick={removeTextFromList} />
+            ),[listOfText]
+        )}
     </React.Fragment>
 };
 
